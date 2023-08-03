@@ -50,7 +50,7 @@ class MoviewViewController: UIViewController {
     // 3
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
@@ -79,8 +79,10 @@ extension MoviewViewController: UITableViewDataSource {
 
 extension MoviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
         let storyboard = UIStoryboard(name: "Detail", bundle: Bundle(for: DetailViewController.self))
-        let detailViewController = storyboard.instantiateViewController(withIdentifier: "Detail")
+        let detailViewController = storyboard.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        detailViewController.movie = movie
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
