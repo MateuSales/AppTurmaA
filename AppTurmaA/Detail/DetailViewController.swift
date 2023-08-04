@@ -16,6 +16,13 @@ class DetailViewController: UIViewController {
         movieImageView.contentMode = .scaleAspectFill
         movieImageView.backgroundColor = .blue
         
+        configure(with: movie)
+    }
+
+    func configure(with movie: Movie) {
         movieTitle.text = movie.title
+        movieRating.text = "Classificação: \(movie.voteAverage)"
+        movieDescription.text = movie.overview
+        movieImageView.download(from: movie.posterPath)
     }
 }
